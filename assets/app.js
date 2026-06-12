@@ -241,6 +241,33 @@
     }
   }
 
+  /* ---- Glow de cursor en tarjetas (.svc, .dcard, .step) ---- */
+  function wireCardGlow(){
+    if(reduced) return;
+    var cards = document.querySelectorAll('.svc, .dcard, .step');
+    cards.forEach(function(card){
+      card.addEventListener('mousemove', function(e){
+        var r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+        card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+      });
+    });
+  }
+
+  /* ---- Parallax sutil del grid de fondo en el hero ---- */
+  function wireHeroParallax(){
+    if(reduced) return;
+    var hero = document.querySelector('.hero, .page-hero');
+    if(!hero) return;
+    hero.addEventListener('mousemove', function(e){
+      var r = hero.getBoundingClientRect();
+      var px = ((e.clientX - r.left) / r.width - .5) * 16;
+      var py = ((e.clientY - r.top) / r.height - .5) * 16;
+      hero.style.setProperty('--px', px.toFixed(1));
+      hero.style.setProperty('--py', py.toFixed(1));
+    });
+  }
+
   /* ---- Easter eggs globales ---- */
   function wireEasterEggs(){
     console.log("%c\n  ╔═╗╔═╗╔╦╗╔╗ ╔═╗╦\n  ║  ║ ║║║║╠╩╗║ ║║\n  ╚═╝╚═╝╩ ╩╚═╝╚═╝╩  labs\n", "color:#2B3CFF;font-family:monospace;font-size:12px");
@@ -272,6 +299,8 @@
   wireHeroTyping();
   wireBento();
   wireReveal();
+  wireCardGlow();
+  wireHeroParallax();
   wireEasterEggs();
 
   // Primeras comprobaciones de viewport (carga, fuentes, layout)

@@ -29,6 +29,13 @@
   background-size:28px 28px;
   -webkit-mask-image:linear-gradient(to bottom,black 0%,transparent 100%);
   mask-image:linear-gradient(to bottom,black 0%,transparent 100%);
+  transform:translate(calc(var(--px,0) * 1px),calc(var(--py,0) * 1px));
+  transition:transform .25s ease-out;
+}
+.hero::after{
+  content:"";position:absolute;top:-130px;right:-160px;width:560px;height:560px;z-index:0;
+  background:radial-gradient(circle,var(--glow-cobalt),transparent 70%);
+  filter:blur(70px);opacity:.55;pointer-events:none;
 }
 .hero>*{position:relative;z-index:1}
 .hero p.sub{font-size:18px;color:var(--ink-2);max-width:560px;margin:22px 0 30px}
@@ -36,44 +43,64 @@
 .bento{display:grid;grid-template-columns:1.45fr 1fr 1fr;grid-template-rows:auto auto;gap:14px;margin-top:56px}
 .tile{border-radius:var(--radius);padding:22px}
 .tile-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;display:block;margin-bottom:14px}
-.tile.dark{background:var(--tile-dark);grid-row:span 2}
+.tile.dark{background:var(--tile-dark);grid-row:span 2;position:relative;border:1px solid var(--glass-border);overflow:hidden}
+.tile.dark::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background:radial-gradient(circle at 25% 0%,var(--glow-cobalt),transparent 60%);
+  pointer-events:none;
+}
+.tile.dark>*{position:relative;z-index:1}
 .tile.dark .tile-label{color:var(--ink-3)}
 .kpis{display:flex;gap:10px;margin-bottom:16px}
 .kpi{flex:1;border-radius:8px;padding:12px}
 .kpi .num{font-weight:700;font-size:26px;line-height:1;font-variation-settings:'wdth' 110}
 .kpi .lbl{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1px;margin-top:6px;display:block}
 .kpi.a{background:var(--tile-dark-2)}.kpi.a .num{color:#fff}.kpi.a .lbl{color:var(--ink-3)}
-.kpi.b{background:var(--cobalt)}.kpi.b .num{color:#fff}.kpi.b .lbl{color:#C8CDFF}
+.kpi.b{background:var(--cobalt)}.kpi.b .num{color:#fff}.kpi.b .lbl{color:#FBE0D4}
 .chart{display:flex;align-items:flex-end;gap:6px;height:120px}
 .bar{flex:1;border-radius:4px;background:var(--cobalt);transform-origin:bottom;transform:scaleY(1)}
-.bar.peak{background:var(--mint)}
+.bar.peak{background:var(--mint);animation:breathe 2.4s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.06)}}
 .tile.in .bar{transform:scaleY(1)}
+.chart-labels{display:flex;gap:6px;margin-top:8px}
+.chart-labels span{flex:1;text-align:center;font-family:'Space Mono',monospace;font-size:9px;color:var(--ink-3)}
 .tile.chat{background:var(--surface);border:1px solid var(--line)}
 .tile.chat .tile-label{color:var(--ink-3)}
 .bubble{font-size:13px;line-height:1.45;border-radius:12px;padding:9px 13px;max-width:88%;margin-bottom:9px}
 body.js .tile.chat .bubble{opacity:0}
 body.js .tile.chat .bubble.show{opacity:1}
-.bubble.them{background:#EDEFF4;color:var(--ink);border-bottom-left-radius:3px}
+.bubble.them{background:#EFEAE0;color:var(--ink);border-bottom-left-radius:3px}
 .bubble.us{background:var(--cobalt);color:#fff;margin-left:auto;border-bottom-right-radius:3px}
 .typing{display:inline-flex;gap:4px;padding:4px 2px}
 .typing i{width:6px;height:6px;border-radius:50%;background:#fff;opacity:.5;animation:blink 1s infinite}
 .typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
 @keyframes blink{0%,100%{opacity:.3}50%{opacity:1}}
-.tile.mintbg{background:var(--mint)}.tile.mintbg .tile-label{color:var(--mint-deep)}
-.phone{width:104px;margin:4px auto 0;background:var(--tile-dark);border-radius:16px;padding:9px;box-shadow:0 12px 30px rgba(11,74,54,.25)}
+.tile.mintbg{background:var(--cobalt-soft)}.tile.mintbg .tile-label{color:var(--mint-deep)}
+.phone{width:104px;margin:4px auto 0;background:var(--tile-dark);border-radius:16px;padding:9px;box-shadow:0 12px 30px rgba(217,119,87,.22);position:relative}
+.phone .notch{width:34%;height:13px;background:var(--tile-dark-2);border-radius:0 0 8px 8px;margin:0 auto 8px}
 .phone .row{border-radius:5px;margin-bottom:6px}
 .phone .row.r1{height:26px;background:var(--cobalt)}
 .phone .row.r2,.phone .row.r3{height:13px;background:var(--tile-dark-2)}
 .phone .row.r4{height:30px;background:var(--mint);margin-bottom:0}
-.tile.term{background:var(--tile-dark);grid-column:span 2;padding:0;overflow:hidden}
-.term-bar{display:flex;gap:7px;align-items:center;padding:11px 16px;border-bottom:1px solid #232838}
+.phone .ping{
+  position:absolute;top:-5px;right:-5px;width:15px;height:15px;border-radius:50%;
+  background:var(--cobalt);border:2px solid var(--mint);
+}
+.tile.term{background:var(--tile-dark);grid-column:span 2;padding:0;overflow:hidden;position:relative;border:1px solid var(--glass-border)}
+.tile.term::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background:radial-gradient(circle at 80% 0%,var(--glow-mint),transparent 55%);
+  pointer-events:none;
+}
+.tile.term>*{position:relative;z-index:1}
+.term-bar{display:flex;gap:7px;align-items:center;padding:11px 16px;border-bottom:1px solid #3A352F}
 .term-bar i{width:10px;height:10px;border-radius:50%;display:inline-block}
 .term-title{font-family:'Space Mono',monospace;font-size:10px;color:var(--ink-3);margin-left:8px;letter-spacing:1px}
 .term-body{font-family:'Space Mono',monospace;font-size:12px;line-height:1.9;padding:14px 18px 16px;min-height:104px}
-.t-line{color:#C8CDFF}
+.t-line{color:#E8DDD3}
 body.js .tile.term .t-line{opacity:0}
 body.js .tile.term .t-line.show{opacity:1}
-.t-prompt{color:var(--mint)}.t-dim{color:#6B7390}.t-ok{color:var(--mint)}
+.t-prompt{color:var(--mint)}.t-dim{color:#8C8278}.t-ok{color:var(--mint)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
 .blink{animation:pulse 1.4s infinite}
 .stack{margin-top:72px}
@@ -119,6 +146,7 @@ body.js .tile.term .t-line.show{opacity:1}
           <div class="bar" style="height:58%;transition-delay:.40s"></div>
           <div class="bar" style="height:78%;transition-delay:.47s"></div>
         </div>
+        <div class="chart-labels" aria-hidden="true"><span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
       </div>
 
       <div class="tile chat">
@@ -133,10 +161,12 @@ body.js .tile.term .t-line.show{opacity:1}
       <div class="tile mintbg">
         <span class="tile-label">App móvil · iOS y Android</span>
         <div class="phone" aria-hidden="true">
+          <div class="notch"></div>
           <div class="row r1"></div>
           <div class="row r2"></div>
           <div class="row r3"></div>
           <div class="row r4"></div>
+          <span class="ping blink"></span>
         </div>
       </div>
 
@@ -180,7 +210,7 @@ body.js .tile.term .t-line.show{opacity:1}
       <p>Cada proyecto empieza por entender tu negocio. Después elegimos la herramienta adecuada, no la que está de moda.</p>
     </div>
     <div class="services">
-      <article class="svc reveal">
+      <article class="svc featured reveal">
         <span class="num">&lt;desarrollo_web /&gt;</span>
         <h3>Desarrollo web a medida</h3>
         <p>Aplicaciones web y paneles de gestión que se adaptan a cómo trabaja tu equipo, no al revés.</p>
@@ -213,6 +243,29 @@ body.js .tile.term .t-line.show{opacity:1}
         </ul>
         <a href="servicio-agentes-ia.html" class="link">leer_más() →</a>
       </article>
+    </div>
+  </div>
+</section>
+
+<section style="padding:0 0 92px">
+  <div class="wrap">
+    <div class="stats-grid reveal">
+      <div class="stat">
+        <span class="stat-num">100%</span>
+        <span class="stat-lbl">código propio · sin plantillas ni low-code</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">&lt;48h</span>
+        <span class="stat-lbl">tiempo de respuesta a tus mensajes</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">1</span>
+        <span class="stat-lbl">equipo directo, sin intermediarios</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">∞</span>
+        <span class="stat-lbl">revisiones hasta que funcione de verdad</span>
+      </div>
     </div>
   </div>
 </section>
@@ -259,24 +312,42 @@ body.js .tile.term .t-line.show{opacity:1}
     <!-- PLACEHOLDER: sustituir estas tarjetas por casos reales cuando estén publicados -->
     <div class="projects">
       <article class="proj reveal">
-        <span class="badge">// TODO: publicar</span>
-        <div>
-          <h3>caso_estudio_01.md</h3>
-          <p>Gestión de obra en tiempo real para construcción.</p>
+        <div class="browser-bar" aria-hidden="true">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <span class="url">comboilabs.com/casos/obra-en-vivo</span>
+        </div>
+        <div class="proj-body">
+          <span class="badge">// TODO: publicar</span>
+          <div>
+            <h3>caso_estudio_01.md</h3>
+            <p>Gestión de obra en tiempo real para construcción.</p>
+          </div>
         </div>
       </article>
       <article class="proj reveal">
-        <span class="badge">// TODO: publicar</span>
-        <div>
-          <h3>caso_estudio_02.md</h3>
-          <p>Agente de citas por WhatsApp para clínica.</p>
+        <div class="browser-bar" aria-hidden="true">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <span class="url">comboilabs.com/casos/agente-citas</span>
+        </div>
+        <div class="proj-body">
+          <span class="badge">// TODO: publicar</span>
+          <div>
+            <h3>caso_estudio_02.md</h3>
+            <p>Agente de citas por WhatsApp para clínica.</p>
+          </div>
         </div>
       </article>
       <article class="proj reveal">
-        <span class="badge">// TODO: publicar</span>
-        <div>
-          <h3>caso_estudio_03.md</h3>
-          <p>App móvil para turismo activo.</p>
+        <div class="browser-bar" aria-hidden="true">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <span class="url">comboilabs.com/casos/app-turismo</span>
+        </div>
+        <div class="proj-body">
+          <span class="badge">// TODO: publicar</span>
+          <div>
+            <h3>caso_estudio_03.md</h3>
+            <p>App móvil para turismo activo.</p>
+          </div>
         </div>
       </article>
     </div>
@@ -286,11 +357,25 @@ body.js .tile.term .t-line.show{opacity:1}
 <section style="padding-top:0">
   <div class="wrap">
     <div class="cta-band reveal">
-      <span class="cta-cmd"><span class="prompt">$</span> ./iniciar_proyecto --llamada 30min --compromiso 0</span>
-      <h2>¿Tienes un proyecto en mente?</h2>
-      <p>Cuéntanoslo en una llamada de 30 minutos. Te diremos con honestidad si podemos ayudarte y cómo.</p>
-      <a href="contacto.html" class="btn">Hablemos →</a>
-      <a href="mailto:hola@comboilabs.com" class="mail">hola@comboilabs.com</a>
+      <div class="cta-grid">
+        <div class="cta-content">
+          <span class="cta-cmd"><span class="prompt">$</span> ./iniciar_proyecto --llamada 30min --compromiso 0</span>
+          <h2>¿Tienes un proyecto en mente?</h2>
+          <p>Cuéntanoslo en una llamada de 30 minutos. Te diremos con honestidad si podemos ayudarte y cómo.</p>
+          <a href="contacto.html" class="btn">Hablemos →</a>
+          <a href="mailto:hola@comboilabs.com" class="mail">hola@comboilabs.com</a>
+        </div>
+        <div class="codeblock" aria-hidden="true">
+          <div class="term-bar">
+            <i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i>
+            <span class="term-title">tu_proyecto/api.py</span>
+          </div>
+          <pre><span class="c"># una llamada y nos pones al día</span>
+<span class="k">@app</span>.post(<span class="s">"/citas"</span>)
+<span class="k">def</span> <span class="n">crear_cita</span>(c: Cita):
+    <span class="k">return</span> agenda.reservar(c)</pre>
+        </div>
+      </div>
     </div>
   </div>
 </section>
