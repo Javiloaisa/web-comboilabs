@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto — Comboi Labs</title>
+<meta name="description" content="Hablemos de tu proyecto. Llamada de 30 minutos sin compromiso. Comboi Labs, desarrollo de software a medida en Benissa (Alicante).">
+<link rel="canonical" href="https://comboilabs.com/contacto/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ProfessionalService",
+  "name":"Comboi Labs",
+  "image":"https://comboilabs.com/og.png",
+  "url":"https://comboilabs.com",
+  "email":"hola@comboilabs.com",
+  "areaServed":"España",
+  "address":{"@type":"PostalAddress","addressLocality":"Benissa","addressRegion":"Alicante","addressCountry":"ES"},
+  "description":"Desarrollo de software a medida: web, apps móviles y agentes de IA."
+}
+</script>
+<style>
+.ok-msg{
+  display:none;font-family:'Space Mono',monospace;font-size:13px;
+  color:var(--mint-deep);background:#E4F8F0;border:1px solid #B6ECD8;
+  border-radius:9px;padding:13px 15px;
+}
+.ok-msg.show{display:block}
+</style>
+</head>
+<body data-page="contacto">
+
+<div id="site-header"></div>
+
+<main>
+<div class="wrap">
+  <nav class="crumbs" aria-label="Ruta">
+    <a href="index.html">~</a><span class="sep">/</span><span class="here">contacto</span>
+  </nav>
+  <div class="page-hero" data-screen-label="Contacto">
+    <span class="eyebrow reveal">~/comboi $ ./iniciar_proyecto --llamada 30min --compromiso 0</span>
+    <h1 class="reveal">Cuéntanos<br><span class="hl">tu proyecto.</span></h1>
+    <p class="sub reveal">Escríbenos qué tienes en mente. Respondemos en 24-48 h laborables y, si encaja, te proponemos una llamada de 30 minutos sin compromiso para verlo bien.</p>
+  </div>
+</div>
+
+<section style="padding-top:30px">
+  <div class="wrap">
+    <div class="contact-grid">
+      <!-- TODO: conectar el formulario con un backend o Formspree. Sin captcha de Google. -->
+      <form class="form reveal" id="contactForm" action="#" method="post" novalidate>
+        <div class="field">
+          <label for="name">// nombre <span class="req">*</span></label>
+          <input type="text" id="name" name="name" autocomplete="name" placeholder="Cómo te llamas" required>
+        </div>
+        <div class="field">
+          <label for="email">// email <span class="req">*</span></label>
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="donde te respondemos" required>
+        </div>
+        <div class="field">
+          <label for="empresa">// empresa <span style="color:var(--ink-3)">(opcional)</span></label>
+          <input type="text" id="empresa" name="empresa" autocomplete="organization" placeholder="tu negocio">
+        </div>
+        <div class="field">
+          <label for="mensaje">// mensaje <span class="req">*</span></label>
+          <textarea id="mensaje" name="mensaje" placeholder="¿Qué quieres construir? Cuéntanos el problema, no hace falta que sepas la solución." required></textarea>
+        </div>
+        <!-- honeypot anti-spam: no rellenar -->
+        <div class="hp" aria-hidden="true">
+          <label for="website">No rellenar este campo</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="ok-msg" id="okMsg">&gt; mensaje preparado ✓ · conecta el backend para enviarlo de verdad</div>
+        <button type="submit" class="btn">Enviar mensaje →</button>
+        <span class="note">Al enviar aceptas nuestra política de privacidad. Nada de spam, prometido.</span>
+      </form>
+
+      <aside class="contact-aside">
+        <div class="info-card dark reveal">
+          <div class="k">Email directo</div>
+          <div class="v"><a href="mailto:hola@comboilabs.com">hola@comboilabs.com</a></div>
+        </div>
+        <div class="info-card reveal">
+          <div class="k">Dónde estamos</div>
+          <div class="v">Benissa · Alicante</div>
+          <p style="color:var(--ink-2);font-size:14px;margin-top:8px">Trabajamos para toda España en remoto. Si eres de la zona, nos tomamos un café.</p>
+        </div>
+        <div class="info-card reveal">
+          <div class="k">Horario de respuesta</div>
+          <div class="v">24-48 h laborables</div>
+          <p style="color:var(--ink-2);font-size:14px;margin-top:8px">Leemos todos los mensajes. Si encaja, te proponemos llamada.</p>
+        </div>
+        <div class="codeblock reveal">
+          <div class="term-bar" aria-hidden="true">
+            <i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i>
+            <span class="term-title">status</span>
+          </div>
+<pre><span class="c">// disponibilidad</span>
+estado:  <span class="s">"aceptando proyectos"</span>
+plazo:   <span class="s">"próximo hueco: consúltanos"</span></pre>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <span class="cta-cmd"><span class="prompt">$</span> git log --oneline --since="primera llamada"</span>
+      <h2>Así sigue después de escribirnos</h2>
+      <p>Te respondemos, hablamos 30 minutos, te mandamos propuesta y plazo por escrito. Sin compromiso hasta que digas sí.</p>
+      <a href="servicios.html" class="btn">Ver qué hacemos →</a>
+      <a href="mailto:hola@comboilabs.com" class="mail">hola@comboilabs.com</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="assets/app.js"></script>
+<script>
+(function(){
+  var form = document.getElementById('contactForm');
+  var ok = document.getElementById('okMsg');
+  if(!form) return;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    // honeypot: si está relleno, ignoramos en silencio
+    if(form.website.value) return;
+    if(!form.checkValidity()){ form.reportValidity(); return; }
+    ok.classList.add('show');
+  });
+})();
+</script>
+</body>
+</html>
