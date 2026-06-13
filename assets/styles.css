@@ -83,11 +83,14 @@ img{max-width:100%;display:block}
 
 /* ---------- Toggle de tema ---------- */
 .theme-toggle{
-  background:transparent;border:1px solid var(--line);border-radius:6px;
+  background:var(--surface);border:1.5px solid var(--ink-3);border-radius:6px;
   width:34px;height:34px;display:flex;align-items:center;justify-content:center;
-  cursor:pointer;font-size:15px;flex-shrink:0;color:var(--ink);
+  cursor:pointer;font-size:18px;flex-shrink:0;color:var(--ink);
+  box-shadow:0 1px 3px rgba(16,19,26,.06);
 }
-.theme-toggle:hover{background:var(--cobalt-soft);border-color:var(--cobalt)}
+.theme-toggle:hover{background:var(--cobalt-soft);border-color:var(--cobalt);color:var(--cobalt)}
+header.site[data-header="terminal"] .theme-toggle{background:var(--tile-dark-2);border-color:#4A443C;color:#fff;box-shadow:none}
+header.site[data-header="terminal"] .theme-toggle:hover{background:#4A443C;border-color:var(--mint);color:var(--mint)}
 
 /* =========================================================
    HEADER  (3 variantes conmutables: brackets / tabs / terminal)
