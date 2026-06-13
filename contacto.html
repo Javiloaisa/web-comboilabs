@@ -80,6 +80,18 @@
       </form>
 
       <aside class="contact-aside">
+        <div class="codeblock reveal" id="liveJsonCard">
+          <div class="term-bar" aria-hidden="true">
+            <i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i>
+            <span class="term-title">mensaje.json</span>
+          </div>
+<pre><span class="k">const</span> mensaje = {
+  nombre:  <span class="s">"<span id="liveName">—</span>"</span>,
+  email:   <span class="s">"<span id="liveEmail">—</span>"</span>,
+  empresa: <span class="s">"<span id="liveEmpresa">—</span>"</span>,
+  mensaje: <span class="s">"<span id="liveMensaje">—</span>"</span>,
+}; <span class="c">// se actualiza mientras escribes</span></pre>
+        </div>
         <div class="info-card dark reveal">
           <div class="k">Email directo</div>
           <div class="v"><a href="mailto:hola@comboilabs.com">hola@comboilabs.com</a></div>
@@ -136,6 +148,29 @@ plazo:   <span class="s">"próximo hueco: consúltanos"</span></pre>
     if(form.website.value) return;
     if(!form.checkValidity()){ form.reportValidity(); return; }
     ok.classList.add('show');
+  });
+})();
+
+/* — vista en vivo de mensaje.json — */
+(function(){
+  var fields = [
+    ['name', 'liveName'],
+    ['email', 'liveEmail'],
+    ['empresa', 'liveEmpresa'],
+    ['mensaje', 'liveMensaje']
+  ];
+
+  fields.forEach(function(pair){
+    var input = document.getElementById(pair[0]);
+    var out = document.getElementById(pair[1]);
+    if(!input || !out) return;
+
+    input.addEventListener('input', function(){
+      var val = input.value.trim();
+      if(!val){ out.textContent = '—'; return; }
+      if(val.length > 40) val = val.slice(0, 40) + '…';
+      out.textContent = val.replace(/\n/g, ' ');
+    });
   });
 })();
 </script>

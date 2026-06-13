@@ -20,6 +20,19 @@
   ]
 }
 </script>
+<style>
+/* — terminal interactiva (quiénes somos) — */
+.term-cmds{display:flex;gap:6px;flex-wrap:wrap;padding:10px 16px;border-bottom:1px solid #3A352F}
+.term-cmd-btn{
+  font-family:'Space Mono',monospace;font-size:11px;color:#A89C8E;
+  background:#1B2030;border:1px solid #3A352F;border-radius:6px;padding:5px 10px;
+  cursor:pointer;transition:border-color .15s,color .15s;
+}
+.term-cmd-btn:hover{color:#E8DDD3;border-color:#2B3CFF}
+.term-cmd-btn.active{color:#5BE0B3;border-color:#5BE0B3}
+#teamTermOutput{transition:opacity .15s}
+#teamTermOutput.fade{opacity:0}
+</style>
 </head>
 <body data-page="nosotros">
 
@@ -72,9 +85,14 @@
     <div class="codeblock reveal" style="max-width:680px">
       <div class="term-bar" aria-hidden="true">
         <i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i>
-        <span class="term-title">comboi.config.ts</span>
+        <span class="term-title" id="teamTermTitle">comboi.config.ts</span>
       </div>
-<pre><span class="k">const</span> comboi = {
+      <div class="term-cmds">
+        <button type="button" class="term-cmd-btn active" data-cmd="config">cat comboi.config.ts</button>
+        <button type="button" class="term-cmd-btn" data-cmd="principios">./principios.sh</button>
+        <button type="button" class="term-cmd-btn" data-cmd="log">git log --oneline -3</button>
+      </div>
+<pre id="teamTermOutput"><span class="k">const</span> comboi = {
   base:    <span class="s">"Benissa, Alicante"</span>,
   socios:  <span class="n">3</span>,
   desde:   <span class="s">"toda España, en remoto"</span>,
@@ -148,5 +166,6 @@
 
 <script src="assets/terminal-easter-egg.js"></script>
 <script src="assets/app.js"></script>
+<script src="assets/team-terminal.js"></script>
 </body>
 </html>
