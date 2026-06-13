@@ -50,7 +50,7 @@
 @keyframes borderWelcome{0%{box-shadow:0 0 0 0 rgba(43,60,255,0)}40%{box-shadow:0 0 0 8px rgba(43,60,255,.25)}100%{box-shadow:0 0 0 0 rgba(43,60,255,0)}}
 .tile.welcome-pulse{animation:borderWelcome 1s ease-out forwards}
 .interact-hint{
-  position:absolute;top:10px;right:10px;
+  position:absolute!important;top:10px;right:10px;z-index:2;
   font-family:'Space Mono',monospace;font-size:10px;color:#5BE0B3;
   background:rgba(10,13,20,.85);padding:3px 8px;border-radius:4px;
   border:1px solid #5BE0B3;opacity:0;transition:opacity .3s;pointer-events:none;
