@@ -34,6 +34,55 @@
   ]
 }
 </script>
+<style>
+/* — editor de código en vivo (hero) — */
+.hero-split{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start}
+.hero-copy{min-width:0}
+
+.live-editor{
+  background:#10131A;border-radius:14px;overflow:hidden;border:1px solid #2B3CFF;
+  box-shadow:0 24px 60px rgba(16,19,26,.18);display:flex;flex-direction:column;
+}
+.editor-bar{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid #232838;background:#0A0D14}
+.editor-dots{display:flex;gap:6px}
+.editor-dots span{width:10px;height:10px;border-radius:50%;display:inline-block}
+.editor-tabs{display:flex;gap:2px;flex:1}
+.editor-tab{font-family:'Space Mono',monospace;font-size:11px;color:#6B7390;background:transparent;border:none;padding:5px 12px;border-radius:4px;cursor:pointer;transition:background .15s,color .15s}
+.editor-tab.active{background:#1B2030;color:#C8CDFF}
+.editor-tab:hover:not(.active){color:#C8CDFF}
+.editor-status{font-family:'Space Mono',monospace;font-size:10px;color:#5BE0B3;letter-spacing:1px}
+
+.editor-body{position:relative;height:200px}
+.editor-pane{display:flex;height:100%;overflow:hidden}
+.editor-pane.hidden{display:none}
+.line-numbers{
+  padding:12px 10px 12px 14px;font-family:'Space Mono',monospace;font-size:12px;line-height:1.6;
+  color:#3A4055;text-align:right;user-select:none;overflow:hidden;min-width:36px;
+  border-right:1px solid #232838;display:flex;flex-direction:column;
+}
+.line-numbers span{display:block}
+.code-area{
+  flex:1;background:#10131A;color:#C8CDFF;font-family:'Space Mono',monospace;font-size:12px;
+  line-height:1.6;padding:12px 14px;border:none;outline:none;resize:none;overflow-y:auto;tab-size:2;
+}
+.code-area::selection{background:rgba(43,60,255,.35)}
+
+.editor-divider{
+  display:flex;align-items:center;gap:10px;padding:7px 14px;border-top:1px solid #232838;
+  border-bottom:1px solid #232838;background:#0A0D14;font-family:'Space Mono',monospace;
+  font-size:10px;color:#5BE0B3;letter-spacing:1px;
+}
+
+#livePreview{width:100%;height:200px;border:none;background:#F4F5F7}
+
+@media (max-width:1024px){
+  .hero-split{grid-template-columns:1fr;gap:32px}
+}
+@media (max-width:640px){
+  .editor-body{height:160px}
+  #livePreview{height:160px}
+}
+</style>
 </head>
 <body data-page="servicio">
 
@@ -45,12 +94,52 @@
     <a href="index.html">~</a><span class="sep">/</span><a href="servicios.html">servicios</a><span class="sep">/</span><span class="here">desarrollo-web</span>
   </nav>
   <div class="page-hero" data-screen-label="Servicio: Desarrollo web">
-    <span class="eyebrow reveal">~/servicios $ cat desarrollo-web.md</span>
-    <h1 class="reveal">Desarrollo web<br><span class="hl">a medida.</span></h1>
-    <p class="sub reveal">Aplicaciones web y paneles de gestión construidos alrededor de cómo trabaja tu equipo. Rápidos, mantenibles y conectados con lo que ya usas.</p>
-    <div class="hero-ctas reveal">
-      <a href="contacto.html" class="btn">Cuéntanos tu proyecto →</a>
-      <a href="#faq" class="btn ghost">Ver preguntas frecuentes</a>
+    <div class="hero-split">
+      <div class="hero-copy">
+        <span class="eyebrow reveal">~/servicios $ cat desarrollo-web.md</span>
+        <h1 class="reveal">Desarrollo web<br><span class="hl">a medida.</span></h1>
+        <p class="sub reveal">Aplicaciones web y paneles de gestión construidos alrededor de cómo trabaja tu equipo. Rápidos, mantenibles y conectados con lo que ya usas.</p>
+        <div class="hero-ctas reveal">
+          <a href="contacto.html" class="btn">Cuéntanos tu proyecto →</a>
+          <a href="#faq" class="btn ghost">Ver preguntas frecuentes</a>
+        </div>
+      </div>
+
+      <div class="live-editor reveal" role="region" aria-label="Editor de código interactivo">
+        <div class="editor-bar">
+          <div class="editor-dots" aria-hidden="true">
+            <span style="background:#FF5F57"></span>
+            <span style="background:#FEBC2E"></span>
+            <span style="background:#28C840"></span>
+          </div>
+          <div class="editor-tabs">
+            <button type="button" class="editor-tab active" data-tab="html">index.html</button>
+            <button type="button" class="editor-tab" data-tab="css">styles.css</button>
+          </div>
+          <span class="editor-status" aria-live="polite">● live</span>
+        </div>
+
+        <div class="editor-body">
+          <div class="editor-pane" id="pane-html">
+            <div class="line-numbers" aria-hidden="true"></div>
+            <textarea class="code-area" id="code-html" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"></textarea>
+          </div>
+          <div class="editor-pane hidden" id="pane-css">
+            <div class="line-numbers" aria-hidden="true"></div>
+            <textarea class="code-area" id="code-css" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off"></textarea>
+          </div>
+        </div>
+
+        <div class="editor-divider">
+          <span>▶ preview</span>
+        </div>
+
+        <iframe
+          id="livePreview"
+          title="Preview del código en tiempo real"
+          sandbox="allow-scripts"
+        ></iframe>
+      </div>
     </div>
   </div>
 </div>
@@ -175,5 +264,6 @@
 
 <script src="assets/terminal-easter-egg.js"></script>
 <script src="assets/app.js"></script>
+<script src="assets/live-editor.js"></script>
 </body>
 </html>
