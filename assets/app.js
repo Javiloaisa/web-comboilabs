@@ -357,6 +357,53 @@
     });
   }
 
+  /* ---- Placeholder con efecto typewriter en el input del chat ---- */
+  function wireChatPlaceholder(){
+    var input = document.getElementById('chatInput');
+    if(!input) return;
+
+    var texts = [
+      'pregúntame qué hacemos...',
+      '¿cuánto cuesta una app?',
+      '¿qué es un agente de IA?'
+    ];
+    var stopped = false;
+
+    function stop(){
+      if(stopped) return;
+      stopped = true;
+      input.placeholder = '';
+    }
+    input.addEventListener('focus', stop);
+    input.addEventListener('click', stop);
+    input.addEventListener('input', stop);
+
+    if(reduced){ input.placeholder = texts[0]; return; }
+
+    var ti = 0;
+    function cycle(){
+      if(stopped) return;
+      var text = texts[ti % texts.length];
+      var i = 0;
+      function typeStep(){
+        if(stopped) return;
+        i++;
+        input.placeholder = text.slice(0, i);
+        if(i < text.length) setTimeout(typeStep, 60);
+        else setTimeout(eraseStep, 1800);
+      }
+      function eraseStep(){
+        if(stopped) return;
+        i--;
+        input.placeholder = text.slice(0, i);
+        if(i > 0) setTimeout(eraseStep, 30);
+        else { ti++; setTimeout(cycle, 300); }
+      }
+      setTimeout(typeStep, 60);
+    }
+    cycle();
+  }
+
   /* ---- Micro-animaciones v2: entrada específica por sección ---- */
   function wireMicroAnimations(){
     if(reduced) return;
@@ -447,6 +494,7 @@
   wireHeroTyping();
   wireBento();
   wireBentoChat();
+  wireChatPlaceholder();
   wireReveal();
   wireMicroAnimations();
   wireCardGlow();

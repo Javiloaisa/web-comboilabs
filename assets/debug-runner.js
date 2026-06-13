@@ -8,7 +8,7 @@
   var RECORD_KEY = 'comboi_debug_runner_record';
   var GROUND_OFFSET = 28;
 
-  var tile, canvas, ctx, scoreEl;
+  var tile, canvas, ctx, scoreEl, badgeEl;
   var W = 0, H = 0, groundY = 0;
   var state = 'idle';
   var frame = 0;
@@ -20,6 +20,7 @@
   var rafId = null;
   var inView = false;
   var audioCtx = null;
+  var idleJumpTimer = null;
 
   function randRange(min, max){ return min + Math.random() * (max - min); }
   function randInt(min, max){ return Math.floor(min + Math.random() * (max - min + 1)); }
@@ -29,6 +30,7 @@
     tile = document.querySelector('.tile.game');
     canvas = document.getElementById('gameCanvas');
     scoreEl = document.getElementById('grScore');
+    badgeEl = tile ? tile.querySelector('.interactive-badge') : null;
     if(!tile || !canvas || !canvas.getContext) return;
     ctx = canvas.getContext('2d');
 
@@ -72,6 +74,10 @@
         startGame();
       }
     } catch(e){}
+
+    idleJumpTimer = setInterval(function(){
+      if(state === 'idle' && player.vy === 0) player.vy = -11;
+    }, 3000);
   }
 
   function resize(){
@@ -102,6 +108,9 @@
   }
 
   function startGame(){
+    if(idleJumpTimer !== null){ clearInterval(idleJumpTimer); idleJumpTimer = null; }
+    if(tile) tile.classList.remove('idle-pulse');
+    if(badgeEl) badgeEl.style.display = 'none';
     resize();
     resetWorld();
     state = 'playing';
@@ -145,8 +154,17 @@
 
   /* ---- idle ---- */
   function drawIdle(){
-    var bob = Math.sin(frame * 0.08) * 2;
-    drawPlayer(player.x, groundY - player.h + bob, 0, 0);
+    if(player.vy !== 0 || player.y < groundY - player.h){
+      player.vy += 0.55;
+      player.y += player.vy;
+      if(player.y >= groundY - player.h){
+        player.y = groundY - player.h;
+        player.vy = 0;
+      }
+    }
+
+    var bob = (player.vy === 0) ? Math.sin(frame * 0.08) * 2 : 0;
+    drawPlayer(player.x, player.y + bob, 0, 0);
 
     if(Math.floor(frame / 30) % 2 === 0){
       ctx.fillStyle = '#2B3CFF';

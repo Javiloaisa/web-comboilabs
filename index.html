@@ -76,7 +76,9 @@ body.js .tile.chat .bubble.show{opacity:1}
 .bubble.them .typing i{background:var(--ink-2)}
 .bubble.fade-out{opacity:0!important;transform:translateY(-10px);transition:opacity .3s,transform .3s}
 .bubble.error{background:transparent;color:#FF5F57;font-family:'Space Mono',monospace;font-size:12px;padding:4px 0}
-.dot-live{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--mint);vertical-align:middle;margin-left:2px}
+.dot-live{display:inline-block;width:7px;height:7px;border-radius:50%;background:#5BE0B3;vertical-align:middle;margin-left:2px}
+@keyframes livePulse{0%,100%{opacity:1}50%{opacity:.2}}
+.live-dot{animation:livePulse 1.4s ease-in-out infinite}
 .chat-input-row{
   display:flex;gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid #232838;
 }
@@ -129,6 +131,14 @@ body.js .tile.term .t-line.show{opacity:1}
 }
 .tile.game .term-bar{border-bottom:1px solid #232838}
 .gr-score{margin-left:auto;font-family:'Space Mono',monospace;font-size:11px;color:var(--mint);letter-spacing:1px}
+@keyframes borderPulse{0%,100%{box-shadow:0 0 0 0 rgba(43,60,255,0)}50%{box-shadow:0 0 0 6px rgba(43,60,255,.2)}}
+.tile.game.idle-pulse{animation:borderPulse 2s ease-in-out infinite}
+.interactive-badge{
+  font-family:'Space Mono',monospace;font-size:10px;background:#2B3CFF;color:#fff;
+  padding:3px 8px;border-radius:4px;margin-left:auto;animation:fadeInDown .5s ease .8s both;
+}
+.interactive-badge + .gr-score{margin-left:8px}
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 #gameCanvas{display:block;width:100%;height:120px;background:#0A0D14}
 .gr-instructions{
   font-family:'Space Mono',monospace;font-size:10px;color:#6B7390;text-align:center;padding:8px 0;
@@ -180,7 +190,7 @@ body.js .tile.term .t-line.show{opacity:1}
       </div>
 
       <div class="tile chat">
-        <span class="tile-label">Agente de IA · demo en vivo <span class="dot-live blink" aria-hidden="true"></span></span>
+        <span class="tile-label">Agente de IA · demo en vivo <span class="dot-live live-dot" aria-hidden="true"></span></span>
         <div id="chatDemo">
           <div class="bubble them">Hola, ¿tenéis hueco el jueves por la tarde?</div>
           <div class="bubble us" id="bubbleTyping"><span class="typing"><i></i><i></i><i></i></span></div>
@@ -217,10 +227,11 @@ body.js .tile.term .t-line.show{opacity:1}
         </div>
       </div>
 
-      <div class="tile game">
+      <div class="tile game idle-pulse">
         <div class="term-bar" aria-hidden="true">
           <i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i>
           <span class="term-title">debug_runner.exe</span>
+          <span class="interactive-badge">▶ interactivo</span>
           <span class="gr-score" id="grScore">SCORE: 0</span>
         </div>
         <canvas id="gameCanvas"></canvas>
