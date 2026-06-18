@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<script>
+(function(){
+  var t = localStorage.getItem('comboi_theme');
+  if (t === 'dark') document.documentElement.classList.add('dark');
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caso de estudio: app municipal de Benissa — Comboi Labs</title>
+<meta name="description" content="Cómo construimos la app oficial del Ayuntamiento de Benissa, con una sección de avisos municipales centralizada para los vecinos.">
+<link rel="canonical" href="https://comboilabs.com/casos/benissa-app/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+.case-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.case-shot{border-radius:20px;overflow:hidden;box-shadow:0 20px 50px rgba(16,19,26,.16);border:1px solid var(--line);aspect-ratio:9/16}
+.case-shot img{width:100%;height:100%;object-fit:cover;object-position:50% 38%;display:block}
+@media (max-width:640px){
+  .case-gallery{gap:8px}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BreadcrumbList",
+  "itemListElement":[
+    {"@type":"ListItem","position":1,"name":"Inicio","item":"https://comboilabs.com/"},
+    {"@type":"ListItem","position":2,"name":"Proyectos","item":"https://comboilabs.com/proyectos/"},
+    {"@type":"ListItem","position":3,"name":"Benissa App","item":"https://comboilabs.com/casos/benissa-app/"}
+  ]
+}
+</script>
+</head>
+<body data-page="caso">
+
+<div id="site-header"></div>
+
+<main>
+<div class="wrap">
+  <nav class="crumbs" aria-label="Ruta">
+    <a href="index.html">~</a><span class="sep">/</span><a href="index.html#proyectos">proyectos</a><span class="sep">/</span><span class="here">benissa-app</span>
+  </nav>
+  <div class="page-hero" data-screen-label="Caso de estudio: Benissa App">
+    <span class="eyebrow reveal">~/proyectos $ cat benissa-app.md</span>
+    <h1 class="reveal">App municipal<br><span class="hl">de Benissa.</span></h1>
+    <p class="sub reveal">La app oficial del Ayuntamiento de Benissa para sus vecinos, con una sección de avisos municipales centralizada y accesible desde el móvil.</p>
+    <div class="hero-ctas reveal">
+      <a href="https://benissa-app.web.app/avisos" class="btn" target="_blank" rel="noopener noreferrer">Ver app en vivo →</a>
+      <a href="contacto.html" class="btn ghost">Quiero algo parecido</a>
+    </div>
+  </div>
+</div>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">// el contexto</span>
+      <h2>La comunicación municipal, en el bolsillo de cada vecino</h2>
+    </div>
+    <div class="split reveal">
+      <p class="lead">Los avisos de un ayuntamiento suelen perderse: un cartel en el tablón, una publicación en redes que no llega a todos, una nota que se queda en el cajón.</p>
+      <div class="body">
+        <p>El Ayuntamiento de Benissa nos pidió una app oficial para que cualquier vecino tenga los avisos municipales a un toque de distancia, sin depender de enterarse por terceros.</p>
+        <p>La sección de avisos centraliza las comunicaciones oficiales del consistorio en un único sitio, pensado para consultarse desde el móvil en segundos.</p>
+        <!-- TODO: ampliar con el resto de funciones de la app y datos reales de adopción/uso una vez confirmados con el cliente -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">// ficha técnica</span>
+      <h2>El proyecto, en código</h2>
+    </div>
+    <div class="codeblock reveal" style="max-width:680px">
+      <div class="term-bar" aria-hidden="true">
+        <i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i>
+        <span class="term-title">caso.config.ts</span>
+      </div>
+<pre><span class="k">const</span> caso = {
+  cliente:   <span class="s">"Ayuntamiento de Benissa"</span>,
+  sector:    <span class="s">"Administración local"</span>,
+  encargo:   <span class="s">"app oficial con avisos municipales"</span>,
+  stack:     <span class="s">"&lt;!-- TODO: completar --&gt;"</span>,
+  resultado: <span class="s">"&lt;!-- TODO: completar --&gt;"</span>,
+  estado:    <span class="s">"en producción"</span>,
+}; <span class="c">// app real, en uso por el ayuntamiento</span></pre>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">// qué construimos</span>
+      <h2>Avisos municipales, sin ruido</h2>
+    </div>
+    <div class="deliver">
+      <article class="dcard reveal span2 dark"><span class="ic">avisos</span><h3>Avisos en tiempo real</h3><p>Los vecinos consultan los avisos oficiales del ayuntamiento desde la app, sin depender de redes sociales, carteles o boca a boca.</p></article>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="case-gallery reveal">
+      <div class="case-shot"><img src="assets/img/benissa-app-1.jpg" alt="Pantalla de inicio de la app de Benissa, con un evento destacado y las secciones principales" loading="lazy" width="600" height="1298"></div>
+      <div class="case-shot"><img src="assets/img/benissa-app-2.jpg" alt="Pantalla de agenda de la app de Benissa, con eventos del día por categorías" loading="lazy" width="600" height="1298"></div>
+      <div class="case-shot"><img src="assets/img/benissa-app-3.jpg" alt="Sección de fiestas de la app de Benissa, con Moros y Cristianos y otras celebraciones" loading="lazy" width="600" height="1298"></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:24px">
+      <span class="eyebrow">// seguir explorando</span>
+    </div>
+    <div class="services">
+      <article class="svc">
+        <span class="num">&lt;apps_moviles /&gt;</span><h3>Apps móviles</h3>
+        <p>Si tu negocio necesita una app como esta, así es como la construimos.</p>
+        <a href="servicio-apps-moviles.html" class="link">leer_más() →</a>
+      </article>
+      <article class="svc">
+        <span class="num">&lt;proyectos /&gt;</span><h3>Más proyectos</h3>
+        <p>Estamos documentando el resto de nuestros casos. Échales un ojo.</p>
+        <a href="index.html#proyectos" class="link">ver_proyectos() →</a>
+      </article>
+      <article class="svc">
+        <span class="num">&lt;contacto /&gt;</span><h3>Contacto</h3>
+        <p>Cuéntanos qué necesitas y vemos cómo encaja.</p>
+        <a href="contacto.html" class="link">hablar() →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <span class="cta-cmd"><span class="prompt">$</span> ./iniciar_proyecto --tipo app --llamada 30min</span>
+      <h2>¿Tu ayuntamiento o negocio necesita algo así?</h2>
+      <p>Cuéntanos qué quieres construir en una llamada de 30 minutos. Te diremos con honestidad si podemos ayudarte y cómo.</p>
+      <a href="contacto.html" class="btn">Hablemos →</a>
+      <a href="mailto:hola@comboilabs.com" class="mail">hola@comboilabs.com</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="assets/terminal-easter-egg.js"></script>
+<script src="assets/app.js"></script>
+<script src="assets/theme.js"></script>
+</body>
+</html>

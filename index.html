@@ -125,6 +125,12 @@ html.dark .bubble.them{background:var(--surface-2);color:var(--ink)}
 .dot-live{display:inline-block;width:7px;height:7px;border-radius:50%;background:#5BE0B3;vertical-align:middle;margin-left:2px}
 @keyframes livePulse{0%,100%{opacity:1}50%{opacity:.2}}
 .live-dot{animation:livePulse 1.4s ease-in-out infinite}
+.proj.live{border-style:solid;border-color:var(--mint);background:var(--surface);text-decoration:none;color:inherit;transition:transform .15s,box-shadow .15s}
+.proj.live:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(16,19,26,.07)}
+.proj.live .badge{background:#DDF7EC;color:var(--mint-deep)}
+html.dark .proj.live{background:var(--surface)}
+.proj .thumb{width:100%;height:130px;border-radius:8px;overflow:hidden;margin-bottom:14px;flex-shrink:0}
+.proj .thumb img{width:100%;height:100%;object-fit:cover;object-position:50% 32%;display:block}
 .chat-input-row{
   display:flex;gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid #232838;
 }
@@ -458,12 +464,28 @@ body.js .tile.term .t-line.show{opacity:1}
 <section id="proyectos">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">// proyectos --status=building</span>
-      <h2>Casos de estudio en camino</h2>
-      <p>Estamos documentando nuestros primeros proyectos. Muy pronto podrás ver aquí qué hemos construido y qué resultados ha dado.</p>
+      <span class="eyebrow">// proyectos --status=shipping</span>
+      <h2>Casos de estudio</h2>
+      <p>El primero ya está en producción. Estamos documentando el resto.</p>
     </div>
-    <!-- PLACEHOLDER: sustituir estas tarjetas por casos reales cuando estén publicados -->
+    <!-- PLACEHOLDER: sustituir las dos tarjetas restantes por casos reales cuando estén publicados -->
     <div class="projects">
+      <a class="proj live" href="caso-benissa-app.html">
+        <div class="browser-bar" aria-hidden="true">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <span class="url">/casos/benissa-app</span>
+        </div>
+        <div class="thumb">
+          <img src="assets/img/benissa-app-1.jpg" alt="Pantalla de inicio de la app de Benissa, con un evento destacado" loading="lazy" width="600" height="1298">
+        </div>
+        <div class="proj-body">
+          <span class="badge">en producción <span class="dot-live live-dot" aria-hidden="true"></span></span>
+          <div>
+            <h3>benissa_app.md</h3>
+            <p>App municipal de avisos para el Ayuntamiento de Benissa.</p>
+          </div>
+        </div>
+      </a>
       <article class="proj">
         <div class="browser-bar" aria-hidden="true">
           <span class="dots"><i></i><i></i><i></i></span>
@@ -487,19 +509,6 @@ body.js .tile.term .t-line.show{opacity:1}
           <div>
             <h3>caso_estudio_02.md</h3>
             <p>Agente de citas por WhatsApp para clínica.</p>
-          </div>
-        </div>
-      </article>
-      <article class="proj">
-        <div class="browser-bar" aria-hidden="true">
-          <span class="dots"><i></i><i></i><i></i></span>
-          <span class="url">/casos/app-turismo</span>
-        </div>
-        <div class="proj-body">
-          <span class="badge">// TODO: publicar</span>
-          <div>
-            <h3>caso_estudio_03.md</h3>
-            <p>App móvil para turismo activo.</p>
           </div>
         </div>
       </article>
