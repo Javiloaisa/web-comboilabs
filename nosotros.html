@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quiénes somos — Comboi Labs</title>
-<meta name="description" content="Somos Comboi Labs: tres informáticos de Benissa (Alicante) que construyen software a medida con trato directo y código que funciona.">
+<meta name="description" content="Somos Comboi Labs: tres socios de Benissa (Alicante) que construyen software a medida con trato directo y código que funciona.">
 <link rel="canonical" href="https://comboilabs.com/nosotros/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,17 +27,18 @@
 }
 </script>
 <style>
-/* — terminal interactiva (quiénes somos) — */
-.term-cmds{display:flex;gap:6px;flex-wrap:wrap;padding:10px 16px;border-bottom:1px solid #3A352F}
-.term-cmd-btn{
-  font-family:'Space Mono',monospace;font-size:11px;color:#A89C8E;
-  background:#1B2030;border:1px solid #3A352F;border-radius:6px;padding:5px 10px;
-  cursor:pointer;transition:border-color .15s,color .15s;
-}
-.term-cmd-btn:hover{color:#E8DDD3;border-color:#2B3CFF}
-.term-cmd-btn.active{color:#5BE0B3;border-color:#5BE0B3}
-#teamTermOutput{transition:opacity .15s}
-#teamTermOutput.fade{opacity:0}
+/* — manifiesto (sustituye al hueco de la foto de equipo) — */
+.manifesto-block{max-width:680px;margin:0 auto}
+.manifesto-block pre{font-size:clamp(17px,2.2vw,22px);font-weight:700;line-height:1.6;white-space:pre-wrap}
+.manifesto-block .c{display:block;font-size:12px;font-weight:400;margin-bottom:10px}
+
+/* — cifras (sustituye al bloque de codigo "quienes somos") — */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px 18px;text-align:center}
+.stat-num{display:block;font-weight:700;font-size:28px;font-variation-settings:'wdth' 110;color:var(--cobalt)}
+.stat-lbl{display:block;margin-top:8px;font-family:'Space Mono',monospace;font-size:11px;color:var(--ink-2);letter-spacing:.3px}
+@media (max-width:768px){.stats-row{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.stats-row{grid-template-columns:1fr}}
 </style>
 </head>
 <body data-page="nosotros">
@@ -51,7 +52,7 @@
   </nav>
   <div class="page-hero" data-screen-label="Nosotros">
     <span class="eyebrow reveal">~/comboi $ cat equipo.md</span>
-    <h1 class="reveal">Tres informáticos<br><span class="hl">de Benissa.</span></h1>
+    <h1 class="reveal">Tres socios<br><span class="hl">de Benissa.</span></h1>
     <p class="sub reveal">No somos una agencia con departamentos y capas. Somos las tres personas que van a construir tu proyecto y con las que vas a hablar de principio a fin. Trato directo, código que funciona.</p>
   </div>
 </div>
@@ -66,7 +67,7 @@
       <div class="body">
         <!-- TODO: completar con la historia real de la empresa y de los socios. No inventar datos. -->
         <p>Comboi Labs nace en Benissa de la idea de que el buen software no tiene por qué venir de una gran ciudad ni de una gran consultora. <!-- TODO: año de fundación y motivo real --></p>
-        <p>Nos juntamos tres informáticos <!-- TODO: cómo os conocisteis --> con las mismas ganas: hacer herramientas que la gente use de verdad y dar un trato que no te haga sentir un ticket más.</p>
+        <p>Nos juntamos tres socios <!-- TODO: cómo os conocisteis --> con las mismas ganas: hacer herramientas que la gente use de verdad y dar un trato que no te haga sentir un ticket más.</p>
         <p>Trabajamos desde aquí para clientes de toda España. Cerca cuando hace falta, accesibles siempre.</p>
       </div>
     </div>
@@ -75,9 +76,12 @@
 
 <section style="padding-top:0">
   <div class="wrap">
-    <div class="ph reveal" aria-label="Hueco para la foto del equipo">
-      <span class="tag">// TODO: hacer la foto</span>
-      <span class="note">foto_equipo.jpg · los tres, en Benissa · sin stock</span>
+    <div class="codeblock manifesto-block reveal">
+      <div class="term-bar" aria-hidden="true">
+        <i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i>
+        <span class="term-title">manifiesto.txt</span>
+      </div>
+      <pre><span class="c">// nuestra forma de trabajar, en una frase</span><span class="s">"No vendemos horas. Vendemos que tu negocio funcione mejor."</span></pre>
     </div>
   </div>
 </section>
@@ -86,25 +90,13 @@
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">// const comboi</span>
-      <h2>Quiénes somos, en código</h2>
+      <h2>Quiénes somos, en cifras</h2>
     </div>
-    <div class="codeblock reveal" style="max-width:680px">
-      <div class="term-bar" aria-hidden="true">
-        <i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i>
-        <span class="term-title" id="teamTermTitle">comboi.config.ts</span>
-      </div>
-      <div class="term-cmds">
-        <button type="button" class="term-cmd-btn active" data-cmd="config">cat comboi.config.ts</button>
-        <button type="button" class="term-cmd-btn" data-cmd="principios">./principios.sh</button>
-        <button type="button" class="term-cmd-btn" data-cmd="log">git log --oneline -3</button>
-      </div>
-<pre id="teamTermOutput"><span class="k">const</span> comboi = {
-  base:    <span class="s">"Benissa, Alicante"</span>,
-  socios:  <span class="n">3</span>,
-  desde:   <span class="s">"toda España, en remoto"</span>,
-  promesa: <span class="s">"código que funciona, trato directo"</span>,
-  humo:    <span class="n">0</span>,
-}; <span class="c">// sin letra pequeña</span></pre>
+    <div class="stats-row reveal">
+      <div class="stat-card"><span class="stat-num">3</span><span class="stat-lbl">socios al frente</span></div>
+      <div class="stat-card"><span class="stat-num">Benissa</span><span class="stat-lbl">desde donde trabajamos</span></div>
+      <div class="stat-card"><span class="stat-num">España</span><span class="stat-lbl">a quién llegamos, en remoto</span></div>
+      <div class="stat-card"><span class="stat-num">0</span><span class="stat-lbl">letra pequeña</span></div>
     </div>
   </div>
 </section>
@@ -125,7 +117,10 @@
         <p>Gerente en Fox Telecom desde 2018, con paso por el Ayuntamiento de Teulada y formación en Administración de Sistemas Informáticos.</p>
       </article>
       <article class="member reveal">
-        <div class="avatar">// TODO: foto</div>
+        <div class="avatar has-photo">
+          <div class="avatar-bar" aria-hidden="true"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i></div>
+          <img src="assets/img/enrique-copeiro.jpg" alt="Enrique Copeiro del Villar" loading="lazy">
+        </div>
         <h3>Enrique Copeiro del Villar</h3>
         <span class="role">co-founder_&amp;_developer()</span>
         <p>Ingeniero de Telecomunicaciones y fundador de Saza.app e ITOfunnels, con experiencia en soporte técnico para Movistar+.</p>
@@ -145,12 +140,13 @@
     <div class="sec-head reveal">
       <span class="eyebrow">// principios.json</span>
       <h2>Cómo trabajamos</h2>
-      <p>Tres reglas que no negociamos, estés con el proyecto que estés.</p>
+      <p>Cuatro reglas que no negociamos, estés con el proyecto que estés.</p>
     </div>
     <div class="steps">
       <div class="step reveal"><span class="num">principio_01</span><h3>Sin humo</h3><p>Te decimos lo que se puede y lo que no. Si algo no te conviene, te lo decimos aunque sea perder el proyecto.</p></div>
       <div class="step reveal"><span class="num">principio_02</span><h3>Hablas con quien construye</h3><p>Nada de intermediarios. Las personas que escriben el código son las que te atienden.</p></div>
       <div class="step reveal"><span class="num">principio_03</span><h3>Que funcione de verdad</h3><p>Entregamos cosas que se usan, no demos bonitas. El éxito es que tu negocio vaya mejor.</p></div>
+      <div class="step reveal"><span class="num">principio_04</span><h3>Presupuesto cerrado</h3><p>Sabes cuánto vas a pagar antes de empezar. Sin sorpresas a mitad de proyecto.</p></div>
     </div>
   </div>
 </section>
@@ -173,6 +169,5 @@
 <script src="assets/terminal-easter-egg.js"></script>
 <script src="assets/app.js"></script>
 <script src="assets/theme.js"></script>
-<script src="assets/team-terminal.js"></script>
 </body>
 </html>

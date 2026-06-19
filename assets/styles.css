@@ -511,6 +511,13 @@ header.site[data-header="terminal"]::after{
   display:flex;align-items:center;justify-content:center;
   font-family:'Space Mono',monospace;font-size:11px;color:var(--ink-3);
 }
+.member .avatar.has-photo{
+  background:var(--tile-dark);flex-direction:column;align-items:stretch;
+  justify-content:flex-start;overflow:hidden;padding:0;
+}
+.member .avatar.has-photo .avatar-bar{display:flex;gap:6px;padding:9px 10px;flex-shrink:0}
+.member .avatar.has-photo .avatar-bar i{width:7px;height:7px;border-radius:50%;display:inline-block}
+.member .avatar.has-photo img{flex:1;min-height:0;width:100%;object-fit:cover;display:block}
 .member h3{font-size:18px;font-weight:600}
 .member .role{font-family:'Space Mono',monospace;font-size:12px;color:var(--cobalt)}
 .member p{font-size:14px;color:var(--ink-2)}
@@ -640,6 +647,7 @@ body.comboi-mode .svc,body.comboi-mode .dcard,body.comboi-mode .step,body.comboi
 }
 .float-chat-toggle:hover{transform:translateY(-2px)}
 .float-chat-toggle:focus-visible{outline:3px solid var(--mint);outline-offset:2px}
+.float-chat-toggle .fc-caret{animation:caretBlink 1s steps(1) infinite}
 .float-chat-panel{
   width:340px;max-width:calc(100vw - 40px);height:460px;max-height:70vh;
   background:var(--surface);border:1px solid var(--line);border-radius:18px;

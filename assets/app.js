@@ -477,6 +477,15 @@
   }
 
   /* ---- Chat flotante (disponible en todas las páginas) ---- */
+  var FLOAT_CHAT_ICON_OPEN =
+    '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+    'stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>' +
+      '<path d="M8.5 9 11 12 8.5 15" stroke-width="1.6"/>' +
+      '<line x1="12" y1="15" x2="15" y2="15" stroke-width="1.6" class="fc-caret"/>' +
+    '</svg>';
+  var FLOAT_CHAT_ICON_CLOSE = '<span aria-hidden="true">✕</span>';
+
   function renderFloatingChat(){
     var wrap = document.createElement('div');
     wrap.className = 'float-chat';
@@ -496,7 +505,7 @@
         '</div>' +
       '</div>' +
       '<button type="button" class="float-chat-toggle" id="floatChatToggle" aria-expanded="false" aria-controls="floatChatPanel" aria-label="Abrir chat">' +
-        '<span aria-hidden="true">💬</span>' +
+        FLOAT_CHAT_ICON_OPEN +
       '</button>';
     document.body.appendChild(wrap);
 
@@ -513,7 +522,7 @@
       open = v;
       panel.hidden = !open;
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      toggle.innerHTML = open ? '<span aria-hidden="true">✕</span>' : '<span aria-hidden="true">💬</span>';
+      toggle.innerHTML = open ? FLOAT_CHAT_ICON_CLOSE : FLOAT_CHAT_ICON_OPEN;
       if(open) input.focus();
     }
 
